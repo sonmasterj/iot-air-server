@@ -13,6 +13,13 @@ const loginLimit = rateLimit({
     message:JSON.stringify({message:'Too many request login!'}) ,
 	legacyHeaders: false
 })
+const calibLimit = rateLimit({
+    windowMs:1000,
+    max:1,
+    standardHeaders: true,
+    message:JSON.stringify({message:'Too many request login!'}) ,
+	legacyHeaders: false
+})
 const PORT = 8000
 let config={
     type:'',
@@ -92,7 +99,7 @@ app.post('/calib',loginLimit,authMiddleware(),(req,res,next)=>{
     })
     config={type,target}
 })
-app.get('/calib',loginLimit,authMiddleware(),(req,res,next)=>{
+app.get('/calib',calibLimit,authMiddleware(),(req,res,next)=>{
     res.json({
         code:'000',
         type:config.type,

@@ -92,7 +92,7 @@ app.post('/calib',loginLimit,authMiddleware(),(req,res,next)=>{
     })
     config={type,target}
 })
-app.get('/calib',authMiddleware(),(req,res,next)=>{
+app.get('/calib',loginLimit,authMiddleware(),(req,res,next)=>{
     res.json({
         code:'000',
         type:config.type,

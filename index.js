@@ -89,7 +89,7 @@ app.post('/calib',loginLimit,authMiddleware(),(req,res,next)=>{
         })
     }
     let arr=['so2','co','no2']
-    if(!arr.includes(type)|| !Number.isInteger(target)){
+    if(!arr.includes(type)){
         return res.json({
             code:'002'
         })
